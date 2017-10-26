@@ -156,7 +156,10 @@ extension ItemsViewController: CLLocationManagerDelegate {
         var indexPaths = [IndexPath]()
         for beacon in beacons {
             for row in 0..<items.count {
-                // TODO: Determine if item is equal to ranged beacon
+                if items[row] == beacon {
+                    items[row].beacon = beacon
+                    indexPaths += [IndexPath(row: row, section: 0)]
+                }
             }
         }
         

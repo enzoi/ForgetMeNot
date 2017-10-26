@@ -37,6 +37,8 @@ class Item: NSObject, NSCoding {
   let uuid: UUID
   let majorValue: UInt16
   let minorValue: UInt16
+    
+  var beacon: CLBeacon?
   
   init(name: String, icon: Int, uuid: UUID, majorValue: Int, minorValue: Int) {
     self.name = name
@@ -73,6 +75,38 @@ class Item: NSObject, NSCoding {
                               minor: minorValue,
                               identifier: name)
     }
+    
+    func nameForProximity(_ proximity: CLProximity) -> String {
+        switch proximity {
+        case .unknown:
+            return "Unknown"
+        case .immediate:
+            return "Immediate"
+        case .near:
+            return "Near"
+        case .far:
+            return "Far"
+        }
+    }
+    
+    func locationString() -> String {
+        guard let beacon = beacon else { return "Location: Unknown" }
+        let proximity = nameForProximity(beacon.proximity)
+        let accuracy = String(format: "%.2f", beacon.accuracy)
+        
+        var location = "Location: \(proximity)"
+        if beacon.proximity != .unknown {
+            location += " (approx. \(accuracy)m)"
+        }
+        
+        return location
+    }
   
+}
+
+func ==(item: Item, beacon: CLBeacon) -> Bool {
+    return ((beacon.proximityUUID.uuidString == item.uuid.uuidString)
+        && (Int(beacon.major) == Int(item.majorValue))
+        && (Int(beacon.minor) == Int(item.minorValue)))
 }
 
