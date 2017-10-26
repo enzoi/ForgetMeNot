@@ -21,6 +21,7 @@
  */
 
 import UIKit
+import CoreLocation
 
 let storedItemsKey = "storedItems"
 
@@ -28,10 +29,14 @@ class ItemsViewController: UIViewController {
 	
   @IBOutlet weak var tableView: UITableView!
   
+  let locationManager = CLLocationManager()
+    
   var items = [Item]()
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    locationManager.requestAlwaysAuthorization()
     
     loadItems()
   }
