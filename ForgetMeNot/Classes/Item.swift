@@ -21,6 +21,7 @@
  */
 
 import Foundation
+import CoreLocation
 
 struct ItemConstant {
   static let nameKey = "name"
@@ -65,6 +66,13 @@ class Item: NSObject, NSCoding {
     aCoder.encode(Int(majorValue), forKey: ItemConstant.majorKey)
     aCoder.encode(Int(minorValue), forKey: ItemConstant.minorKey)
   }
+
+    func asBeaconRegion() -> CLBeaconRegion {
+        return CLBeaconRegion(proximityUUID: uuid,
+                              major: majorValue,
+                              minor: minorValue,
+                              identifier: name)
+    }
   
 }
 

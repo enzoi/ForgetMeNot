@@ -37,7 +37,7 @@ class ItemsViewController: UIViewController {
     super.viewDidLoad()
     
     locationManager.requestAlwaysAuthorization()
-    
+    locationManager.delegate = self
     loadItems()
   }
   
@@ -46,7 +46,7 @@ class ItemsViewController: UIViewController {
     for itemData in storedItems {
       guard let item = NSKeyedUnarchiver.unarchiveObject(with: itemData) as? Item else { continue }
       items.append(item)
-      
+      startMonitoringItem(item)
     }
   }
   
@@ -59,6 +59,18 @@ class ItemsViewController: UIViewController {
     UserDefaults.standard.set(itemsData, forKey: storedItemsKey)
     UserDefaults.standard.synchronize()
   }
+    
+    func startMonitoringItem(_ item: Item) {
+        let beaconRegion = item.asBeaconRegion()
+        locationManager.startMonitoring(for: beaconRegion)
+        locationManager.startRangingBeacons(in: beaconRegion)
+    }
+    
+    func stopMonitoringItem(_ item: Item) {
+        let beaconRegion = item.asBeaconRegion()
+        locationManager.stopMonitoring(for: beaconRegion)
+        locationManager.stopRangingBeacons(in: beaconRegion)
+    }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "segueAdd", let viewController = segue.destination as? AddItemViewController {
@@ -78,6 +90,7 @@ extension ItemsViewController: AddBeacon {
     tableView.endUpdates()
     
     persistItems()
+    startMonitoringItem(item)
   }
 }
 
@@ -107,6 +120,7 @@ extension ItemsViewController : UITableViewDataSource {
       tableView.endUpdates()
       
       persistItems()
+      stopMonitoringItem(items[indexPath.row])
     }
   }
 }
@@ -122,5 +136,10 @@ extension ItemsViewController: UITableViewDelegate {
     detailAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
     self.present(detailAlert, animated: true, completion: nil)
   }
+}
+
+// MARK: - CLLocationManagerDelegate
+
+extension ItemsViewController: CLLocationManagerDelegate {
 }
 
