@@ -20,13 +20,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C00360531E39747F00234FCD /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C00360531E39747F00234FCD /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C003608A1E3EA86500234FCD /* Icons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
 		C003608B1E3EA86500234FCD /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		C003608D1E3EA86500234FCD /* ItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		C003608F1E3EA86500234FCD /* AddItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		C00360901E3EA86500234FCD /* ItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
 		C00360961E3EA88F00234FCD /* IconCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconCell.swift; sourceTree = "<group>"; };
+		CF8DD0AE1FA45BDB009434C5 /* gm.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gm.jpg; sourceTree = "<group>"; };
 		FB9CC9561AD701910038DF33 /* ForgetMeNot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForgetMeNot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB9CC95A1AD701910038DF33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FB9CC95B1AD701910038DF33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -34,7 +35,7 @@
 		FB9CC97B1AD701CF0038DF33 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		FB9CC97D1AD701DA0038DF33 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FB9CC97F1AD701E60038DF33 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		FB9CC9891AD702CC0038DF33 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FB9CC9891AD702CC0038DF33 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +86,24 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		CF8DD0AF1FA45BEA009434C5 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				CF8DD0AE1FA45BDB009434C5 /* gm.jpg */,
+				FB9CC9621AD701910038DF33 /* Images.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		CF8DD0B01FA45C15009434C5 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				FB9CC9891AD702CC0038DF33 /* Main.storyboard */,
+				C00360531E39747F00234FCD /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
 		FB9CC94D1AD701910038DF33 = {
 			isa = PBXGroup;
 			children = (
@@ -105,13 +124,12 @@
 		FB9CC9581AD701910038DF33 /* ForgetMeNot */ = {
 			isa = PBXGroup;
 			children = (
+				FB9CC95B1AD701910038DF33 /* AppDelegate.swift */,
 				C00360891E3EA86500234FCD /* Classes */,
 				C003608C1E3EA86500234FCD /* Custom Cells */,
 				C003608E1E3EA86500234FCD /* ViewControllers */,
-				FB9CC95B1AD701910038DF33 /* AppDelegate.swift */,
-				FB9CC9621AD701910038DF33 /* Images.xcassets */,
-				FB9CC9891AD702CC0038DF33 /* Main.storyboard */,
-				C00360531E39747F00234FCD /* LaunchScreen.storyboard */,
+				CF8DD0AF1FA45BEA009434C5 /* Assets */,
+				CF8DD0B01FA45C15009434C5 /* Storyboards */,
 				FB9CC9591AD701910038DF33 /* Supporting Files */,
 			);
 			path = ForgetMeNot;

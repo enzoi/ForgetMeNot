@@ -58,4 +58,22 @@ extension AppDelegate: CLLocationManagerDelegate {
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
     
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        guard region is CLBeaconRegion else { return }
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Here is something"
+        content.body = "Do you want some information?"
+        content.sound = .default()
+        content.categoryIdentifier = "local"
+        
+        let url = Bundle.main.url(forResource: "gm", withExtension: "jpg")
+        
+        let attachment = try! UNNotificationAttachment(identifier: "image", url: url!, options: [:])
+        content.attachments = [attachment]
+        
+        let request = UNNotificationRequest(identifier: "ForgetMeNot", content: content, trigger: nil)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    }
+    
 }
