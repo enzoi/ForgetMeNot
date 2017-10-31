@@ -37,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let center = UNUserNotificationCenter.current()
     center.requestAuthorization(options:[.alert, .sound]) { (granted, error) in }
     locationManager.delegate = self
+    locationManager.allowsBackgroundLocationUpdates = true
     
     return true
   }
@@ -61,11 +62,23 @@ extension AppDelegate: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         guard region is CLBeaconRegion else { return }
         
+        // Define Actions
+        let actionReadLater = UNNotificationAction(identifier: Constants.Notification.Action.readLater, title: "Read Later", options: [])
+        let actionShowDetails = UNNotificationAction(identifier: Constants.Notification.Action.showDetails, title: "Show Details", options: [.foreground])
+        let actionUnsubscribe = UNNotificationAction(identifier: Constants.Notification.Action.unsubscribe, title: "Unsubscribe", options: [.destructive, .authenticationRequired])
+        
+        // Define Category
+        let tutorialCategory = UNNotificationCategory(identifier: Constants.Notification.Category.tutorial, actions: [actionReadLater, actionShowDetails, actionUnsubscribe], intentIdentifiers: [], options: [])
+        
+        // Register Category
+        UNUserNotificationCenter.current().setNotificationCategories([tutorialCategory])
+        
+        // Create Content
         let content = UNMutableNotificationContent()
         content.title = "Here is something"
         content.body = "Do you want some information?"
         content.sound = .default()
-        content.categoryIdentifier = "local"
+        content.categoryIdentifier = Constants.Notification.Category.tutorial
         
         let url = Bundle.main.url(forResource: "gm", withExtension: "jpg")
         
